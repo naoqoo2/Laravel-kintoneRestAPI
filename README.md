@@ -70,3 +70,6 @@ Route::get('/', function()
 
 ##使用方法
 wikiをご覧下さい。
+
+## License
+Laravel-kintoneRestAPI is released under the MIT License.
