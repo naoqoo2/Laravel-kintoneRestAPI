@@ -59,7 +59,7 @@ class KintoneRestApi{
 			$query .= $key.' ';
 		}
 
-		$request = $this->request->get(['app' => $appID, 'query' => $query, 'fields' => $fields], $command);
+		$request = $this->request->get(['app' => $appID, 'query' => $query, 'fields' => $fields, 'totalCount' => 'true'], $command);
 
 		$response = new Response($request);
 		return $response->getResponse();
