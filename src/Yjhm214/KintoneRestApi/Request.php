@@ -33,6 +33,11 @@ class Request {
 		return $this->data;
 	}
 
+	public function setApiToken($api_token)
+	{
+		$this->api_token = $api_token;
+	}
+
 	private function setAuth($auth_default)
 	{
 		if ($auth_default == 'user_pass_auth') {

@@ -34,6 +34,10 @@ class KintoneRestApi{
 		$this->request = $request;
 	}
 
+	public function setApiToken($api_token)
+	{
+		$this->request->setApiToken($api_token);
+	}
 /*
 |--------------------------------------------------------------------------
 | CRUD
