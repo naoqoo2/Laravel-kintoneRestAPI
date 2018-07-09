@@ -30,7 +30,7 @@ class KintoneRestApiServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['KintoneRestApi'] = $this->app->share(function($app)
+	    $this->app->singleton('KintoneRestApi', function($app)
 	    {
 	      return new KintoneRestApi;
 	    });
