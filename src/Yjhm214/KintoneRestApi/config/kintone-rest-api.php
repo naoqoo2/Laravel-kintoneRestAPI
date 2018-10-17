@@ -48,6 +48,11 @@ return
 				'api_token' => '',
 		],
 
+		'basic_user_pass' => [
+				'user' => '',
+				'pass' => '',
+		],
+
 	],
 
 
