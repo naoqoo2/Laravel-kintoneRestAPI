@@ -9,6 +9,7 @@ class Request {
     const API_BASE_URL = 'https://{subdomain}.cybozu.com/k/{version}/{command}.json';
 
 	private $hashed_user_pass = '';
+	private $hashed_basic_user_pass = '';
 	private $api_token = '';
 	private $url = '';
 	private $status_code = '';
@@ -47,6 +48,14 @@ class Request {
 		} elseif ($auth_default == 'api_token_auth') {
 			$this->api_token = Config::get('kintone-rest-api.authentications.api_token.api_token');
 		}
+
+		if (Config::get('kintone-rest-api.authentications.basic_user_pass.user')
+			&& Config::get('kintone-rest-api.authentications.basic_user_pass.pass')
+		) {
+			$basic_user_pass = Config::get('kintone-rest-api.authentications.basic_user_pass.user'). ':'.
+							Config::get('kintone-rest-api.authentications.basic_user_pass.pass');
+			$this->hashed_basic_user_pass = base64_encode($basic_user_pass);
+		}
 	}
 
 	private function buildHeaders($method)
@@ -56,6 +65,10 @@ class Request {
 			1 => 'X-Cybozu-API-Token:'. $this->api_token,
 			2 => 'Content-Type:',
 		];
+
+		if ($this->hashed_basic_user_pass) {
+			$headers[] = 'Authorization:Basic ' . $this->hashed_basic_user_pass;
+		}
 
 		switch($method){
 			case 'GET': case 'DELETE';
